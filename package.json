@@ -4,6 +4,7 @@
   "description": "medication reminder",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "test": "mocha --exit"
   },
   "repository": {

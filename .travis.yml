@@ -1,0 +1,11 @@
+language: node_js
+node_js: node
+services:
+  - mongodb
+deploy:
+  provider: heroku
+  api_key:
+    secure: fad48e9f-b14e-462e-a706-de645979eb1a
+  app: rocky-depths-14936
+  on:
+    repo: node-app
