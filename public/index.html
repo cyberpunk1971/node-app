@@ -9,15 +9,17 @@
     <h1>MedMinder</h1>
     <h4>A daily reminder for your medication</h4>
     </header>
+    <section id="js-regi">
     <form action="#" method="post" id="js-form">
       <p>Please enter a username, password, and a valid email below</p>
-      First name: <input type="text" id="js-fname" name="first name"><br>
-      Last name: <input type="text" id="js-lname" name="last name"><br>
-      Username: <input type="text" id="js-name" name="username"><br>
-      Password: <input type="text" id="js-password" name="password"><br>
-      Email: <input type="text" id="js-email" name="email"><br>
+      First name: <input type="text" id="js-fname" name="first name" required><br>
+      Last name: <input type="text" id="js-lname" name="last name" required><br>
+      Username: <input type="text" id="js-uname" name="username" required><br>
+      Password: <input type="text" id="js-password" name="password" required><br>
+      Email: <input type="text" id="js-email" name="email" required><br>
       <input type="submit" name="submit" id="js-submit">
     </form>
+    </section>
     <p>Already Registered? <span id="js-login">Login</span></p>
     <script type="text/javascript" src="public/app.js"></script>
     <script type="text/javascript" src=src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
