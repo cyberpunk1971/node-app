@@ -1,14 +1,18 @@
 'use strict';
 
-const bodyParser = require('body-parser');
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const morgan = require('morgan');
+const passport = require('passport');
+const { router: usersRouter } = require('./users');
+const { router: authRouter, localStrategy, jwtstrategy } = require('./auth');
 mongoose.Promise = global.Promise;
 const { PORT, DATABASE_URL } = require('./config');
 const { User } = require('./models');
 const app = express();
+app.use(morgan('common'));
 app.use(express.static('public'));
-app.use(bodyParser.json());
 
 app.post('/users', (req, res => {
   const requiredFields = ['']
