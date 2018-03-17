@@ -80,7 +80,7 @@ function addMedicationHandler() {
   $('#js-medication-list-form').submit(function(event) {
     event.preventDefault();
 
-    const newMedName = $('#js-medication-list-entry').val();
+    const newMedName = $('#js-medication-list-entry').val();//coming back as undefined and appears to delete index 0//
     $('#js-dashboard-search').val('');
     addNewMedication(newMedName);
     renderMedicationList();
@@ -109,7 +109,7 @@ function deleteMedicationHandler() {
 function handleMedicationList() {
   renderMedicationList();
   addMedicationHandler();
-  addNewMedication();
+  // addNewMedication();//was calling twice//
   deleteMedication();
   deleteMedicationHandler();
 }
