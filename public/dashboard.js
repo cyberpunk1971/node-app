@@ -40,8 +40,9 @@ const STATE = {
 
 // $('#js-results').append();
 function generateItemElement(item, itemIndex, template) {
+  console.log(item);
   return `<li class="js-item-index-element" data-item-index=${itemIndex}">
-    <span class="medication-item js-medication-item">${item.medications}</span>
+    <span class="medication-item js-medication-item">${item.brand_name}</span>
     <div class="medication-item-controls">
     <button class="medication-item-delete js-item-delete">
     <span class="button-label">delete</span>
@@ -51,13 +52,19 @@ function generateItemElement(item, itemIndex, template) {
 }
 
 function generateMedicationString(medicationList) {
-  const items = medicationList.medications.map((item, index) => {
-  console.log(item);
-    return generateItemElement(item, index);
+  let results = ''
+  for (let i = 0; i < medicationList.medications.length; i += 1) {
+    results += generateItemElement(medicationList.medications[i], i);
+    // console.log(medicationList.medications[i]);
+  }
+  return results;
 
-  });
-
-  return items.join("");
+  // console.log(item);
+  //   return generateItemElement(item, index);
+  //
+  //
+  //
+  // return items.join("");
 }
 
 function renderMedicationList() {
@@ -66,14 +73,14 @@ function renderMedicationList() {
 }
 
 function addNewMedication(medName) {
-  STATE.medications.push({medications: medName});
+  STATE.medications.push({medications: medName});//need to fix this//
 }
 
 function addMedicationHandler() {
   $('#js-medication-list-form').submit(function(event) {
     event.preventDefault();
-    console.log('`addNewMedication` ran')
-    const newMedName = $('#js-dashboard-search').val();
+
+    const newMedName = $('#js-medication-list-entry').val();
     $('#js-dashboard-search').val('');
     addNewMedication(newMedName);
     renderMedicationList();
