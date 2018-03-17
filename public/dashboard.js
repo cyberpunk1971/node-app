@@ -41,6 +41,7 @@ const STATE = {
 // $('#js-results').append();
 function generateItemElement(item, itemIndex, template) {
   console.log(item);
+  console.log(item.brand_name);
   return `<li class="js-item-index-element" data-item-index=${itemIndex}">
     <span class="medication-item js-medication-item">${item.brand_name}</span>
     <div class="medication-item-controls">
@@ -73,7 +74,7 @@ function renderMedicationList() {
 }
 
 function addNewMedication(medName) {
-  STATE.medications.push({medications: medName});//need to fix this//
+  STATE.medications.push({brand_name: medName});
 }
 
 function addMedicationHandler() {
@@ -81,10 +82,10 @@ function addMedicationHandler() {
     event.preventDefault();
 
     const newMedName = $('#js-medication-list-entry').val();//coming back as undefined and appears to delete index 0//
-    $('#js-dashboard-search').val('');
+    $('#js-medication-list-entry').val('');
     addNewMedication(newMedName);
     renderMedicationList();
-  })
+  });
 }
 
 function getItemIndexFromElement(item) {
@@ -109,7 +110,7 @@ function deleteMedicationHandler() {
 function handleMedicationList() {
   renderMedicationList();
   addMedicationHandler();
-  // addNewMedication();//was calling twice//
+  // addNewMedication();
   deleteMedication();
   deleteMedicationHandler();
 }
