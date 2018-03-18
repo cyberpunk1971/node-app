@@ -43,7 +43,11 @@ function generateItemElement(item, itemIndex, template) {
   console.log(item);
   console.log(item.brand_name);
   return `<li class="js-item-index-element" data-item-index=${itemIndex}">
-    <span class="medication-item js-medication-item">${item.brand_name}</span>
+    <span class="medication-item js-medication-item">Name: ${item.brand_name}</span><br>
+    <span class="medication-item js-medication-item">Form: ${item.dosage_form}</span><br>
+    <span class="medication-item js-medication-item">Generic: ${item.generic_name}</span><br>
+    <span class="medication-item js-medication-item">Route: ${item.route}</span><br>
+    <span class="medication-item js-medication-item">Active Ingredient: ${item.substance_name}</span>
     <div class="medication-item-controls">
     <button class="medication-item-delete js-item-delete">
     <span class="button-label">delete</span>
