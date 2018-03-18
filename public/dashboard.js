@@ -111,7 +111,7 @@ function handleMedicationList() {
   renderMedicationList();
   addMedicationHandler();
   // addNewMedication();
-  deleteMedication();
+  // deleteMedication();
   deleteMedicationHandler();
 }
 
