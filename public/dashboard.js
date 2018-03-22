@@ -42,6 +42,34 @@ const STATE = {
   }
 }
 
+const API_KEY = "kLvHt2puR01mwrVfJM2yyP2m7CkQ1KvuIAAERSrc";
+const SEARCH_URL = "https://api.fda.gov/drug/label.json";
+
+function getDataFromApi(input, callback) {
+  const query = {
+    url: SEARCH_URL,
+    data: {
+      // key: API_KEY,
+      search: `openfda.brand_name:${input}`,
+      limit: 1
+    },
+  };
+  $.getJSON(SEARCH_URL, query.data, generateSearchElement)
+}
+
+
+
+function searchMedicationHandler() {
+  $('#js-dashboard-search-form').submit(function(event) {
+    event.preventDefault();
+    const searchMedName = $('#js-dashboard-search').val();
+    getDataFromApi(searchMedName);
+    event.target.reset();
+    const medSearchList = searchMedications(searchMedName);
+    $('.js-search-list').append(medSearchList);
+  });
+}
+
 
 
 
@@ -63,7 +91,9 @@ function generateItemElement(item, itemIndex, template) {
   </li>`;
 }
 
-function searchMedications(searchTerm) {
+
+
+function searchMedications(input) {
   let searchResults = ''
   let searchMeds = STATE.searchMeds
   for (let i = 0; i < searchMeds.length; i += 1) {
@@ -116,24 +146,15 @@ function addNewMedication(medName) {
 }
 
 function addMedicationHandler() {
-  $('#js-medication-list-form').submit(function(event) {
+  $('.js-search-list').on('click', '.button-label', function(event) {
     event.preventDefault();
-    const newMedName = $('#js-medication-list-entry').val();//coming back as undefined and appears to delete index 0//
+    const newMedName = $('#js-medication-list-entry').val();
     $('#js-medication-list-entry').val('');
     addNewMedication(newMedName);
     renderMedicationList();
   });
 }
-function searchMedicationHandler() {
-  $('#js-dashboard-search-form').submit(function(event) {
-    event.preventDefault();
-    const searchMedName = $('#js-dashboard-search').val();
-    event.target.reset();
-    const medSearchList = searchMedications(searchMedName);
-    $('.js-search-list').append(medSearchList);
 
-  })
-}
 
 
 function getItemIndexFromElement(item) {
