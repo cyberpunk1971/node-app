@@ -119,6 +119,8 @@ function generateSearchElement(item, itemIndex, template) {
   </li>`;
 }
 
+
+
 function generateMedicationString(medications) {
   let results = ''
   for (let i = 0; i < medications.length; i += 1) {

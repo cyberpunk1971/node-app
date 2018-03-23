@@ -3,11 +3,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const { User } = require('./models');
 const router = express.Router();
-const jsonParser = bodyParser.json;
+const jsonParser = bodyParser.json();
 
 router.post('/', jsonParser, (req, res) => {
+  console.log('hello2');
   const requiredFields = ['username', 'password'];
-  const missingFields = requiredFields.find(field => !(field in req.body));
+  const missingField = requiredFields.find(field => !(field in req.body));
 
   if (missingField) {
     return res.status(422).json({
@@ -30,7 +31,7 @@ router.post('/', jsonParser, (req, res) => {
     });
   }
   const explicitlyTrimmedFields = ['username', 'password'];
-  const nonTrimmedFields = explicitlyTrimmedFields.find(
+  const nonTrimmedField = explicitlyTrimmedFields.find(
     field => req.body[field].trim() !== req.body[field]
   );
   if (nonTrimmedField) {
@@ -108,6 +109,7 @@ router.post('/', jsonParser, (req, res) => {
 //remove before submitting for review along with this message.
 
 router.get('/', (req, res) => {
+  console.log('hello3');
   return User.find()
     .then(users => res.json(users.map(user => user.serialize())))
     .catch(err => res.status(500).json({message: 'Internal Server Error'}));

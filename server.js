@@ -1,7 +1,7 @@
 'use strict';
 require('dotenv').config();
 const express = require('express');
-const mongoos = require('mongoose');
+const mongoose = require('mongoose');
 const morgan = require('morgan');
 const passport = require('passport');
 const { router: usersRouter } = require('./users');
@@ -35,7 +35,7 @@ app.use('*', (req, res) => {
 let server;
 function runServer() {
   return new Promise((resolve, reject) => {
-    mongoose.connect(DATABASE_URL, { useMongoClient: true}, err => {
+    mongoose.connect(DATABASE_URL, err => {
       if (err) {
         return reject(err);
       }
