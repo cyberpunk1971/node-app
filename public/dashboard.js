@@ -75,8 +75,7 @@ function searchMedicationHandler() {
 
 // $('#js-results').append();
 function generateItemElement(item, itemIndex, template) {
-  console.log(item);
-  console.log(item.brand_name);
+
   return `<li class="js-item-index-element" data-item-index=${itemIndex}">
     <span class="medication-item js-medication-item">Name: ${item.brand_name}</span><br>
     <span class="medication-item js-medication-item">Form: ${item.dosage_form}</span><br>
