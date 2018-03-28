@@ -1,13 +1,12 @@
 const STATE = {
   "searchMeds": [{
-    "brand_name": "Tylenol",
-    "dosage_form": "tablet",
-    "generic_name": "Acetaminophen",
-    "route": "oral",
-    "substance_name": "Acetaminophen"
+    "brand_name": "",
+    "dosage_form": "",
+    "generic_name": "",
+    "route": "",
+    "substance_name": ""
   }],
-  "medications": [
-    {
+  "medications": [{
       "brand_name": "Tylenol",
       "dosage_form": "tablet",
       "generic_name": "Acetaminophen",
@@ -142,15 +141,17 @@ function renderMedicationList() {
 }
 
 function addNewMedication(medName) {
-  STATE.medications.push({brand_name: medName});
+  STATE.medications.push({
+    brand_name: medName
+  });
 
 }
 
 function addMedicationHandler() {
   $('.js-search-list').on('click', '.button-label', function(event) {
     event.preventDefault();
-    const newMedName = $('#js-medication-list-entry').val();
-    $('#js-medication-list-entry').val('');
+    const newMedName = $('#js-medication-list').val();
+    $('#js-medication-list').val('');
     addNewMedication(newMedName);
     renderMedicationList();
   });
@@ -159,10 +160,10 @@ function addMedicationHandler() {
 
 
 function getItemIndexFromElement(item) {
-    const itemIndexString = $(item)
+  const itemIndexString = $(item)
     .closest('.js-item-index-element')
     .attr('data-item-index');
-    return parseInt(itemIndexString, 10);
+  return parseInt(itemIndexString, 10);
 }
 
 function deleteMedication(itemIndex) {

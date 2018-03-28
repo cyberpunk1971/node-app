@@ -15,17 +15,18 @@ function userRegistration() {
       type: 'POST',
       contentType: 'application/json'
     }).done(function(error, data) {
+      // userDashboard();
+      window.location = '/public/dashboard.html'
       console.log(error);
       console.log(data);
     });
   });
-
 }
 
 function userLogin() {
   $('body').on('submit', '#js-login-form', function(event) {
     event.preventDefault();
-    console.log('hello');
+    // console.log('hello');
     const userValue = {
       username: $('#js-auth-username').val(),
       password: $('#js-auth-password').val()
@@ -37,14 +38,30 @@ function userLogin() {
         type: 'POST',
         data: JSON.stringify(userValue),
         contentType: 'application/json'
-      }).done(function(error, data) {
+      }).done(function(data, error) {
+        window.location = '/public/dashboard.html'
         localStorage.token = data.authToken
         console.log(error);
         console.log(data);
+        // userDashboard(data);
       });
+
   });
 
 }
+
+// function userDashboard(data) {
+//   let dashboardOwner = $('#js-fname').val();
+//   let results =
+//   $('#js-display').append(`Welcome ${dashboardOwner}`);
+//   $.ajax({
+//     url: 'http://localhost:8081/api/dashboard.html',
+//     headers: {'Authorization': 'Bearer' + (`${localStorage.token}`)},
+//     type: 'GET',
+//     contentType: 'application/json'
+//   });
+//   return results;
+// }
 
 $(function() {
   userLogin();
