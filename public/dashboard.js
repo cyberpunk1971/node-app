@@ -39,7 +39,7 @@ const STATE = {
     "firstName": "Alex",
     "lastName": "Thomas"
   }
-}
+ }
 
 const API_KEY = "kLvHt2puR01mwrVfJM2yyP2m7CkQ1KvuIAAERSrc";
 const SEARCH_URL = "https://api.fda.gov/drug/label.json";
@@ -53,9 +53,19 @@ function getDataFromApi(input, callback) {
       limit: 1
     },
   };
-  $.getJSON(SEARCH_URL, query.data, generateSearchElement)
+  $.getJSON(SEARCH_URL, query.data, searchMedications);
 }
 
+// function displayData(data) {
+//   $('#js-display').empty();
+//   console.log(data);
+//     data.results.forEach(item => {
+//       let html = $(`<ul>
+//                       <li> Name:${item.openfda.brand_name}</li></ul>`);
+//                       console.log(item);
+//                       $('#js-display').append(html);
+//     });
+// }
 
 
 function searchMedicationHandler() {
@@ -91,30 +101,35 @@ function generateItemElement(item, itemIndex, template) {
 
 
 
-function searchMedications(input) {
+function searchMedications(data) {
   let searchResults = ''
-  let searchMeds = STATE.searchMeds
+  let searchMeds = data.results
+  if(!searchMeds) return
   for (let i = 0; i < searchMeds.length; i += 1) {
     searchResults += generateSearchElement(searchMeds[i], i);
   }
+  $('#js-display').append(searchResults);
   return searchResults;
 }
 
 function generateSearchElement(item, itemIndex, template) {
   console.log(item);
   console.log(item.brand_name);
-  return `<li class="js-item-index-element" data-item-index=${itemIndex}">
-    <span class="medication-item js-medication-item">Name: ${item.brand_name}</span><br>
-    <span class="medication-item js-medication-item">Form: ${item.dosage_form}</span><br>
-    <span class="medication-item js-medication-item">Generic: ${item.generic_name}</span><br>
-    <span class="medication-item js-medication-item">Route: ${item.route}</span><br>
-    <span class="medication-item js-medication-item">Active Ingredient: ${item.substance_name}</span>
+  return `<form class="js-add-form">
+  <li class="js-item-index-element" data-item-index=${itemIndex}">
+    <span class="medication-item js-medication-item">Name: ${item.openfda.brand_name}</span><br>
+    <span class="medication-item js-medication-item">Form: ${item.openfda.dosage_form}</span><br>
+    <span class="medication-item js-medication-item">Generic: ${item.openfda.generic_name}</span><br>
+    <span class="medication-item js-medication-item">Route: ${item.openfda.route}</span><br>
+    <span class="medication-item js-medication-item">Active Ingredient: ${item.openfda.substance_name}</span>
     <div class="medication-item-controls">
+
     <button class="button-label">Add to list</button><br>
     </div>
       <input type="text" class="user-entry"/>Frequency<br>
       <input type="text" class="user-entry"/>Dosage<br>
-  </li>`;
+  </li>
+  </form>`;
 }
 
 
@@ -148,10 +163,11 @@ function addNewMedication(medName) {
 }
 
 function addMedicationHandler() {
-  $('.js-search-list').on('click', '.button-label', function(event) {
+  $('body').on('submit', '.js-add-form', function(event) {
     event.preventDefault();
     const newMedName = $('#js-medication-list').val();
     $('#js-medication-list').val('');
+    console.log('test');
     addNewMedication(newMedName);
     renderMedicationList();
   });
