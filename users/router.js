@@ -18,7 +18,7 @@ router.post('/', jsonParser, (req, res) => {
       location: missingField
     });
   }
-  const stringFields = ['username', 'password', 'firstName', 'lastName'];
+  const stringFields = ['username', 'password', 'firstname', 'lastname'];
   const nonStringField = stringFields.find(
     field => field in req.body && typeof req.body[field] !== 'string'
   );
@@ -69,9 +69,9 @@ router.post('/', jsonParser, (req, res) => {
         location: tooSmallField || tooLargeField
     });
   }
-  let {username, password, firstName = '', lastName = ''} = req.body;
-  firstName = firstName.trim();
-  lastName = lastName.trim();
+  let {username, password, firstname = '', lastname = ''} = req.body;
+  firstname = firstname.trim();
+  lastname = lastname.trim();
   return User.find({username})
     .count()
     .then(count => {
@@ -89,8 +89,8 @@ router.post('/', jsonParser, (req, res) => {
       return User.create({
         username,
         password: hash,
-        firstName,
-        lastName
+        firstname,
+        lastname
       });
     })
     .then(user => {
@@ -112,6 +112,15 @@ router.get('/', (req, res) => {
   console.log('hello3');
   return User.find()
     .then(users => res.json(users.map(user => user.serialize())))
+    .catch(err => res.status(500).json({message: 'Internal Server Error'}));
+});
+
+router.post('/medication', (req, res) => {
+  console.log('hello3');
+  return Medication.create(req.body)
+    .then(medication => {
+      res.json(medication)
+    })
     .catch(err => res.status(500).json({message: 'Internal Server Error'}));
 });
 

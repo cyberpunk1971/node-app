@@ -19,14 +19,18 @@ const UserSchema = mongoose.Schema({
   lastname: {
     type: String,
     default: ''
-  }
+  },
+  medications: [
+    { type: mongoose.Schema.Types.ObjectId,
+      ref: 'Medication', unique: false, required: [true, 'No Medication id found'] }
+  ]
 });
 
 UserSchema.methods.serialize = function() {
   return {
     username: this.username || '',
-    firstName: this.firstName || '',
-    lastName: this.lastName || ''
+    firstname: this.firstname || '',
+    lastname: this.lastname || ''
   };
 };
 UserSchema.methods.validatePassword = function(password) {
@@ -35,5 +39,34 @@ UserSchema.methods.validatePassword = function(password) {
 UserSchema.statics.hashPassword = function(password) {
   return bcrypt.hash(password, 10);
 };
+
 const User = mongoose.model('User', UserSchema);
-module.exports = {User};
+
+const medSchema = mongoose.Schema({
+  name: {
+    type: String,
+    default: ''
+  },
+  form: {
+    type: String,
+    default: ''
+  },
+  gname: {
+    type: String,
+    default: ''
+  },
+  route: {
+    type: String,
+    default: ''
+  },
+  active: {
+    type: String,
+    default: ''
+  },
+  fdaid: {
+    type: String,
+    default: ''
+  }
+});
+const Medication = mongoose.model('Medication', medSchema);
+module.exports = {User, Medication};

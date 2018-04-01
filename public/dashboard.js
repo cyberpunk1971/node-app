@@ -39,7 +39,7 @@ const STATE = {
     "firstName": "Alex",
     "lastName": "Thomas"
   }
- }
+}
 
 const API_KEY = "kLvHt2puR01mwrVfJM2yyP2m7CkQ1KvuIAAERSrc";
 const SEARCH_URL = "https://api.fda.gov/drug/label.json";
@@ -56,18 +56,6 @@ function getDataFromApi(input, callback) {
   $.getJSON(SEARCH_URL, query.data, searchMedications);
 }
 
-// function displayData(data) {
-//   $('#js-display').empty();
-//   console.log(data);
-//     data.results.forEach(item => {
-//       let html = $(`<ul>
-//                       <li> Name:${item.openfda.brand_name}</li></ul>`);
-//                       console.log(item);
-//                       $('#js-display').append(html);
-//     });
-// }
-
-
 function searchMedicationHandler() {
   $('#js-dashboard-search-form').submit(function(event) {
     event.preventDefault();
@@ -79,13 +67,8 @@ function searchMedicationHandler() {
   });
 }
 
-
-
-
-// $('#js-results').append();
 function generateItemElement(item, itemIndex, template) {
-
-  return `<li class="js-item-index-element" data-item-index=${itemIndex}">
+    return `<li class="js-item-index-element" data-item-index=${itemIndex}">
     <span class="medication-item js-medication-item">Name: ${item.brand_name}</span><br>
     <span class="medication-item js-medication-item">Form: ${item.dosage_form}</span><br>
     <span class="medication-item js-medication-item">Generic: ${item.generic_name}</span><br>
@@ -99,12 +82,10 @@ function generateItemElement(item, itemIndex, template) {
   </li>`;
 }
 
-
-
 function searchMedications(data) {
   let searchResults = ''
   let searchMeds = data.results
-  if(!searchMeds) return
+  if (!searchMeds) return
   for (let i = 0; i < searchMeds.length; i += 1) {
     searchResults += generateSearchElement(searchMeds[i], i);
   }
@@ -123,31 +104,25 @@ function generateSearchElement(item, itemIndex, template) {
     <span class="medication-item js-medication-item">Route: ${item.openfda.route}</span><br>
     <span class="medication-item js-medication-item">Active Ingredient: ${item.openfda.substance_name}</span>
     <div class="medication-item-controls">
-
     <button class="button-label">Add to list</button><br>
     </div>
-      <input type="text" class="user-entry"/>Frequency<br>
-      <input type="text" class="user-entry"/>Dosage<br>
+      <input type="text" id="user-frequency" class="user-entry"/>Frequency<br>
+      <input type="text" id="user-dosage" class="user-entry"/>Dosage<br>
+      <input type="hidden" id="route" value="${item.openfda.route}">
+        <input type="hidden" id="brand-name" value="${item.openfda.brand_name}">
+          <input type="hidden" id="generic-name" value="${item.openfda.generic_name}">
+            <input type="hidden" id="dosage-form" value="${item.openfda.dosage_form}">
+              <input type="hidden" id="substance-name" value="${item.openfda.substance_name}">
   </li>
   </form>`;
 }
-
-
 
 function generateMedicationString(medications) {
   let results = ''
   for (let i = 0; i < medications.length; i += 1) {
     results += generateItemElement(medications[i], i);
-    // console.log(medicationList.medications[i]);
   }
   return results;
-
-  // console.log(item);
-  //   return generateItemElement(item, index);
-  //
-  //
-  //
-  // return items.join("");
 }
 
 function renderMedicationList() {
@@ -156,10 +131,15 @@ function renderMedicationList() {
 }
 
 function addNewMedication(medName) {
-  STATE.medications.push({
-    brand_name: medName
-  });
-
+  $.ajax({
+  url: '/medication',
+  data: JSON.stringify(medName),
+  type: 'POST',
+  contentType: 'application/json'
+}).done(function(error, data) {
+  console.log(error);
+  console.log(data);
+});
 }
 
 function addMedicationHandler() {
@@ -168,12 +148,19 @@ function addMedicationHandler() {
     const newMedName = $('#js-medication-list').val();
     $('#js-medication-list').val('');
     console.log('test');
+    console.log();
+    const newMedName = {
+      name: $('#route'),
+      form: $('#brand-name'),
+      gname: $('#generic-name'),
+      route: $('#substance-name'),
+      active:$('#dosage-form'),
+      fdaid: ''
+    }
     addNewMedication(newMedName);
     renderMedicationList();
   });
 }
-
-
 
 function getItemIndexFromElement(item) {
   const itemIndexString = $(item)
@@ -197,8 +184,6 @@ function deleteMedicationHandler() {
 function handleMedicationList() {
   renderMedicationList();
   addMedicationHandler();
-  // addNewMedication();
-  // deleteMedication();
   deleteMedicationHandler();
   searchMedicationHandler();
 }
