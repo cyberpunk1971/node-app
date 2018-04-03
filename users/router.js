@@ -1,11 +1,12 @@
 'use strict';
 const express = require('express');
-const bodyParser = require('body-parser');
-const { User } = require('./models');
+const { User, Medication } = require('./models');
+const { jwtAuth } = require('../auth/router');
 const router = express.Router();
-const jsonParser = bodyParser.json();
 
-router.post('/', jsonParser, (req, res) => {
+
+
+router.post('/', (req, res) => {
   console.log('hello2');
   const requiredFields = ['username', 'password'];
   const missingField = requiredFields.find(field => !(field in req.body));
@@ -104,10 +105,6 @@ router.post('/', jsonParser, (req, res) => {
     });
 });
 
-
-//Code below is only for testing to see if user is created,
-//remove before submitting for review along with this message.
-
 router.get('/', (req, res) => {
   console.log('hello3');
   return User.find()
@@ -115,13 +112,21 @@ router.get('/', (req, res) => {
     .catch(err => res.status(500).json({message: 'Internal Server Error'}));
 });
 
-router.post('/medication', (req, res) => {
-  console.log('hello3');
+router.post('/medication', jwtAuth, (req, res) => {
+  console.log('hellomeds', req.body);
   return Medication.create(req.body)
     .then(medication => {
+      return User.findOneAndUpdate({_id:req.user._id}, {
+        $addToSet: {medications: medication._id}
+      })
+    })
+        .then(medication => {
       res.json(medication)
     })
-    .catch(err => res.status(500).json({message: 'Internal Server Error'}));
+    .catch(err => {
+      res.status(500).json({message: 'Internal Server Error'})
+      console.log(err);
+    });
 });
 
 module.exports = {router};

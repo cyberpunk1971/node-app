@@ -15,7 +15,7 @@ function userRegistration() {
       type: 'POST',
       contentType: 'application/json'
     }).done(function(error, data) {
-      window.location = '/public/dashboard.html'
+      window.location = '/dashboard.html'
       console.log(error);
       console.log(data);
     });
@@ -37,7 +37,7 @@ function userLogin() {
         data: JSON.stringify(userValue),
         contentType: 'application/json'
       }).done(function(data, error) {
-        window.location = '/public/dashboard.html'
+        window.location = '/dashboard.html'
         localStorage.token = data.authToken
         greetUser();
         console.log(error);

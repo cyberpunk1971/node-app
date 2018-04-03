@@ -4,6 +4,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const passport = require('passport');
+const bodyParser = require('body-parser');
+const jsonParser = bodyParser.json();
 const { router: usersRouter } = require('./users');
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 mongoose.Promise = global.Promise;
@@ -11,7 +13,7 @@ const {PORT, DATABASE_URL} = require('./config');
 const app = express();
 
 app.use(express.static('public'));
-
+app.use(jsonParser);
 app.use(morgan('common'));
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -22,15 +24,13 @@ app.use(function(req, res, next) {
     }
     next();
 });
+
 passport.use(localStrategy);
 passport.use(jwtStrategy);
 app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
-const jwtAuth = passport.authenticate('jwt', {session: false});
 
-// app.get('/', (req, res) => {
-//   res.sendFile(_dirname + '/public/dashboard.html')
-// });
+const jwtAuth = passport.authenticate('jwt', {session: false});
 
 app.get('/api/protected', jwtAuth, (req, res) => {
   return res.json({

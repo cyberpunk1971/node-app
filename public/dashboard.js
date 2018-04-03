@@ -132,10 +132,11 @@ function renderMedicationList() {
 
 function addNewMedication(medName) {
   $.ajax({
-  url: '/medication',
+  url: 'http://localhost:8081/api/users/medication',
   data: JSON.stringify(medName),
   type: 'POST',
-  contentType: 'application/json'
+  contentType: 'application/json',
+  headers: {Authorization: 'Bearer ' + localStorage.token}
 }).done(function(error, data) {
   console.log(error);
   console.log(data);
@@ -145,20 +146,20 @@ function addNewMedication(medName) {
 function addMedicationHandler() {
   $('body').on('submit', '.js-add-form', function(event) {
     event.preventDefault();
-    const newMedName = $('#js-medication-list').val();
-    $('#js-medication-list').val('');
+    const newMedName = $('.js-medication-list').val();
+    $('.js-medication-list').val('');
     console.log('test');
     console.log();
-    const newMedName = {
-      name: $('#route'),
-      form: $('#brand-name'),
-      gname: $('#generic-name'),
-      route: $('#substance-name'),
-      active:$('#dosage-form'),
+    const addMed = {
+      name: $('#route').val(),
+      form: $('#brand-name').val(),
+      gname: $('#generic-name').val(),
+      route: $('#substance-name').val(),
+      active:$('#dosage-form').val(),
       fdaid: ''
     }
-    addNewMedication(newMedName);
-    renderMedicationList();
+    addNewMedication(addMed);
+    renderMedicationList(addMed);
   });
 }
 
