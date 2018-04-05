@@ -30,7 +30,8 @@ UserSchema.methods.serialize = function() {
   return {
     username: this.username || '',
     firstname: this.firstname || '',
-    lastname: this.lastname || ''
+    lastname: this.lastname || '',
+    id: this._id || ''
   };
 };
 UserSchema.methods.validatePassword = function(password) {
@@ -68,5 +69,20 @@ const medSchema = mongoose.Schema({
     default: ''
   }
 });
+
+
+
+medSchema.methods.serialize = function() {
+  return {
+    name: this.name || '',
+    form: this.form || '',
+    gname: this.gname || '',
+    route: this.route || '',
+    active: this.active || '',
+    fdaid: this.fdaid || '',
+    id: this._id || ''
+
+  };
+};
 const Medication = mongoose.model('Medication', medSchema);
 module.exports = {User, Medication};

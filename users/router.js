@@ -129,4 +129,19 @@ router.post('/medication', jwtAuth, (req, res) => {
     });
 });
 
+router.get('/medication', jwtAuth, (req, res) => {
+  return Medication.find()
+    .then(medications => res.json(medications.map(medication => medication.serialize())))
+    // .catch(err => res.status(500).json({message: 'Internal Server Error'}));
+  console.log('medstest');
+});
+
+router.delete('/medication/:id', jwtAuth, (req, res) => {
+  return User.findOneAndUpdate({_id:req.user._id}, {
+    $pull: {medications: req.params.id}
+
+  })
+  .then(user => res.json(user))
+});
+
 module.exports = {router};

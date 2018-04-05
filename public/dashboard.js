@@ -68,12 +68,12 @@ function searchMedicationHandler() {
 }
 
 function generateItemElement(item, itemIndex, template) {
-    return `<li class="js-item-index-element" data-item-index=${itemIndex}">
-    <span class="medication-item js-medication-item">Name: ${item.brand_name}</span><br>
-    <span class="medication-item js-medication-item">Form: ${item.dosage_form}</span><br>
-    <span class="medication-item js-medication-item">Generic: ${item.generic_name}</span><br>
+  return `<li class="js-item-index-element" data-item-index=${item.id}">
+    <span class="medication-item js-medication-item">Name: ${item.name}</span><br>
+    <span class="medication-item js-medication-item">Form: ${item.form}</span><br>
+    <span class="medication-item js-medication-item">Generic: ${item.gname}</span><br>
     <span class="medication-item js-medication-item">Route: ${item.route}</span><br>
-    <span class="medication-item js-medication-item">Active Ingredient: ${item.substance_name}</span>
+    <span class="medication-item js-medication-item">Active Ingredient: ${item.active}</span>
     <div class="medication-item-controls">
     <button class="medication-item-delete js-item-delete">
     <span class="button-label">delete</span>
@@ -98,7 +98,7 @@ function generateSearchElement(item, itemIndex, template) {
   console.log(item.brand_name);
   return `<form class="js-add-form">
   <li class="js-item-index-element" data-item-index=${itemIndex}">
-    <span class="medication-item js-medication-item">Name: ${item.openfda.brand_name}</span><br>
+    <span class="medication-item js-medication-item">Name: ${item.openfda.brand_name}</span>TEST<br>
     <span class="medication-item js-medication-item">Form: ${item.openfda.dosage_form}</span><br>
     <span class="medication-item js-medication-item">Generic: ${item.openfda.generic_name}</span><br>
     <span class="medication-item js-medication-item">Route: ${item.openfda.route}</span><br>
@@ -126,21 +126,35 @@ function generateMedicationString(medications) {
 }
 
 function renderMedicationList() {
-  const medicationString = generateMedicationString(STATE.medications);
-  $('.js-medication-list').html(medicationString);
+  $.ajax({
+    url: 'http://localhost:8081/api/users/medication',
+    type: 'GET',
+    contentType: 'application/json',
+    headers: {
+        Authorization: 'Bearer ' + localStorage.token
+    }
+  }).done(function(data, error) {
+    console.log(error);
+    console.log(data);
+    const medicationString = generateMedicationString(data);
+    $('.js-medication-list').html(medicationString);
+  });
+
 }
 
 function addNewMedication(medName) {
   $.ajax({
-  url: 'http://localhost:8081/api/users/medication',
-  data: JSON.stringify(medName),
-  type: 'POST',
-  contentType: 'application/json',
-  headers: {Authorization: 'Bearer ' + localStorage.token}
-}).done(function(error, data) {
-  console.log(error);
-  console.log(data);
-});
+    url: 'http://localhost:8081/api/users/medication',
+    data: JSON.stringify(medName),
+    type: 'POST',
+    contentType: 'application/json',
+    headers: {
+      Authorization: 'Bearer ' + localStorage.token
+    }
+  }).done(function(data, error) {
+    console.log(error);
+    console.log(data);
+  });
 }
 
 function addMedicationHandler() {
@@ -151,15 +165,15 @@ function addMedicationHandler() {
     console.log('test');
     console.log();
     const addMed = {
-      name: $('#route').val(),
+      name: $('#brand_name').val(),
       form: $('#brand-name').val(),
-      gname: $('#generic-name').val(),
+      gname: $('#generic-name').val(), //fix this//
       route: $('#substance-name').val(),
-      active:$('#dosage-form').val(),
+      active: $('#dosage-form').val(),
       fdaid: ''
     }
     addNewMedication(addMed);
-    renderMedicationList(addMed);
+    renderMedicationList(newMedName);
   });
 }
 
@@ -167,11 +181,21 @@ function getItemIndexFromElement(item) {
   const itemIndexString = $(item)
     .closest('.js-item-index-element')
     .attr('data-item-index');
-  return parseInt(itemIndexString, 10);
+  return (itemIndexString, 10); //what is this?//
 }
 
 function deleteMedication(itemIndex) {
-  STATE.medications.splice(itemIndex, 1);
+  $.ajax({
+    url: 'http://localhost:8081/api/users/medication/' + itemIndex,
+    type: 'DELETE',
+    contentType: 'application/json',
+    headers: {
+      Authorization: 'Bearer ' + localStorage.token
+    }
+  }).done(function(data, error) {
+    console.log(error);
+    console.log(data);
+  });
 }
 
 function deleteMedicationHandler() {
