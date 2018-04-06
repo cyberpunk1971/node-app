@@ -68,7 +68,7 @@ function searchMedicationHandler() {
 }
 
 function generateItemElement(item, itemIndex, template) {
-  return `<li class="js-item-index-element" data-item-index=${item.id}">
+  return `<li class="js-item-index-element" data-item-index="${item._id}">
     <span class="medication-item js-medication-item">Name: ${item.name}</span><br>
     <span class="medication-item js-medication-item">Form: ${item.form}</span><br>
     <span class="medication-item js-medication-item">Generic: ${item.gname}</span><br>
@@ -181,7 +181,7 @@ function getItemIndexFromElement(item) {
   const itemIndexString = $(item)
     .closest('.js-item-index-element')
     .attr('data-item-index');
-  return (itemIndexString, 10); //what is this?//
+  return itemIndexString //what is this?//
 }
 
 function deleteMedication(itemIndex) {

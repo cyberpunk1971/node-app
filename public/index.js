@@ -1,3 +1,5 @@
+
+
 function userRegistration() {
   $('body').on('submit', '#js-form', function(event) {
     event.preventDefault();

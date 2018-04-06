@@ -3,6 +3,7 @@ const express = require('express');
 const { User, Medication } = require('./models');
 const { jwtAuth } = require('../auth/router');
 const router = express.Router();
+const mongoose = require('mongoose');
 
 
 
@@ -116,7 +117,7 @@ router.post('/medication', jwtAuth, (req, res) => {
   console.log('hellomeds', req.body);
   return Medication.create(req.body)
     .then(medication => {
-      return User.findOneAndUpdate({_id:req.user._id}, {
+      return User.findOneAndUpdate({username:req.user.username}, {
         $addToSet: {medications: medication._id}
       })
     })
@@ -130,18 +131,26 @@ router.post('/medication', jwtAuth, (req, res) => {
 });
 
 router.get('/medication', jwtAuth, (req, res) => {
-  return Medication.find()
-    .then(medications => res.json(medications.map(medication => medication.serialize())))
-    // .catch(err => res.status(500).json({message: 'Internal Server Error'}));
+  return User.findOne({username:req.user.username}).populate('medications')
+    .then(user => {
+      console.log(user);
+      console.log(req.user);
+      res.json(user.medications)
+    })
+    .catch(err => res.status(500).json({message: 'Internal Server Error'}));
   console.log('medstest');
 });
 
 router.delete('/medication/:id', jwtAuth, (req, res) => {
-  return User.findOneAndUpdate({_id:req.user._id}, {
+  return User.findOneAndUpdate({username:req.user.username}, {
     $pull: {medications: req.params.id}
 
   })
   .then(user => res.json(user))
+  .catch(err => {
+    res.status(500).json({message: 'Internal Server Error'})
+    console.log(err);
+  });
 });
 
 module.exports = {router};
