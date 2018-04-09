@@ -1,11 +1,11 @@
-@font-face {
+/* @font-face {
    font-family: myFirstFont;
    src: url(sansation_light.woff);
 }
 
 * {
    font-family: myFirstFont;
-}
+} */
 
 body {
   background: radial-gradient(#ffffcc 0%, #996600 100%);
@@ -17,7 +17,6 @@ body {
 
 header {
   text-align: center;
-
 }
 
 ul {
@@ -27,7 +26,6 @@ ul {
 
 li {
 display: inline-block;
-
 }
 
 fieldset {
@@ -61,7 +59,6 @@ label {
 
 .login {
   text-align: center;
-
 }
 
 a:link {
@@ -75,12 +72,10 @@ a:visited {
 }
 
 #js-submit {
-
 }
 
 #js-login {
   margin-left: 0.8rem;
-
 }
 
 input[type="text"],
@@ -109,7 +104,6 @@ input[type="submit"] {
   border: 0;
   cursor: pointer;
   margin-bottom: 0;
-
 }
 
 input[type="text"]:focus,

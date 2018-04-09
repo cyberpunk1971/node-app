@@ -50,7 +50,7 @@ function getDataFromApi(input, callback) {
     data: {
       // key: API_KEY,
       search: `openfda.brand_name:${input}`,
-      limit: 1
+      limit: 5
     },
   };
   $.getJSON(SEARCH_URL, query.data, searchMedications);
@@ -69,8 +69,7 @@ function searchMedicationHandler() {
 
 function generateItemElement(item, itemIndex, template) {
   return `<li class="js-item-index-element" data-item-index="${item._id}">
-    <span class="medication-item js-medication-item">Name: ${item.name}</span><br>
-    <span class="medication-item js-medication-item">Form: ${item.form}</span><br>
+    <span class="medication-item js-medication-item">Name: ${item.name}</span>TEST<br>
     <span class="medication-item js-medication-item">Generic: ${item.gname}</span><br>
     <span class="medication-item js-medication-item">Route: ${item.route}</span><br>
     <span class="medication-item js-medication-item">Active Ingredient: ${item.active}</span>
@@ -99,7 +98,6 @@ function generateSearchElement(item, itemIndex, template) {
   return `<form class="js-add-form">
   <li class="js-item-index-element" data-item-index=${itemIndex}">
     <span class="medication-item js-medication-item">Name: ${item.openfda.brand_name}</span><br>
-    <span class="medication-item js-medication-item">Form: ${item.openfda.dosage_form}</span><br>
     <span class="medication-item js-medication-item">Generic: ${item.openfda.generic_name}</span><br>
     <span class="medication-item js-medication-item">Route: ${item.openfda.route}</span><br>
     <span class="medication-item js-medication-item">Active Ingredient: ${item.openfda.substance_name}</span>
@@ -111,7 +109,6 @@ function generateSearchElement(item, itemIndex, template) {
       <input type="hidden" id="route" value="${item.openfda.route}">
       <input type="hidden" id="brand-name" value="${item.openfda.brand_name}">
       <input type="hidden" id="generic-name" value="${item.openfda.generic_name}">
-      <input type="hidden" id="dosage-form" value="${item.openfda.dosage_form}">
       <input type="hidden" id="substance-name" value="${item.openfda.substance_name}"></li>
       </form>`;
 }
@@ -138,7 +135,6 @@ function renderMedicationList() {
     const medicationString = generateMedicationString(data);
     $('.js-medication-list').html(medicationString);
   });
-
 }
 
 function addNewMedication(medName) {
@@ -159,19 +155,21 @@ function addNewMedication(medName) {
 function addMedicationHandler() {
   $('body').on('submit', '.js-add-form', function(event) {
     event.preventDefault();
+
     const newMedName = $('.js-medication-list').val();
     $('.js-medication-list').val('');
     console.log('test');
     console.log();
     const addMed = {
-      name: $('#brand_name').val(),
-      form: $('#brand-name').val(),
-      gname: $('#generic-name').val(), //fix this//
-      route: $('#substance-name').val(),
-      active: $('#dosage-form').val(),
+      name: $(this).find('#brand-name').val(),
+      form: $(this).find('#dosage-form').val(),
+      gname: $(this).find('#generic-name').val(), //fix this//
+      route: $(this).find('#route').val(),
+      active: $(this).find('#substance-name').val(),
       fdaid: ''
     }
     addNewMedication(addMed);
+    $('#js-display').html('');
     renderMedicationList(newMedName);
   });
 }
