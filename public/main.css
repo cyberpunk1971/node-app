@@ -15,7 +15,7 @@ body {
   font-size: 18px;
 }
 
-header {
+header, .login-header {
   text-align: center;
 }
 
@@ -84,7 +84,6 @@ button[type="submit"] {
   display: block;
   width: 100%;
   height: auto;
-  font-size: 1px;
   text-align: left;
   padding: 15px;
   border: 2px solid #e7e7e7;

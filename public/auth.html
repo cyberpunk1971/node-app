@@ -1,26 +1,34 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="grid.css">
+    <link rel="stylesheet" href="main.css">
+    <title>MedMinder</title>
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <title></title>
-</head>
-
-<body>
-  <header role="banner" class="row">
-    <h1>Please Login Below</h1>
-    <form id="js-login-form" action="#" method="post">
-      <section>
-
-        <input type="text" id="js-auth-username" value="">
-      </section>
-      <section>
-        <input type="password" id="js-auth-password" value="">
-        <button type="submit" id="js-login-button" name="button" value="submit">Login</button>
-
-      </section>
-    </form>
+<body id="log-body">
+  <header role="banner" class="row login-header">
+    <h1>MedMinder</h1>
+    <p>Please Login Below</p>
   </header>
+    <form id="js-login-form" action="#" method="post">
+      <fieldset>
+        <section>
+          <label for="username">Username</label>
+        <input type="text" id="js-auth-username">
+      </section>
+      <section>
+        <label for="password">Password</label>
+        <input type="password" id="js-auth-password">
+        <input type="submit" id="js-login-button" name="button" value="Login"></button>
+
+      </section>
+    </fieldset>
+    </form>
+
   <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
   <script type="text/javascript" src="dashboard.js"></script>
   <script type="text/javascript" src="index.js"></script>

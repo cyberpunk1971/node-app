@@ -41,12 +41,17 @@ function userLogin() {
       }).done(function(data, error) {
         window.location = '/dashboard.html'
         localStorage.token = data.authToken
-        greetUser();
         console.log(error);
         console.log(data);
       });
     });
   }
+
+  $('#js-login-button').click(function() {
+    $('#log-body').fadeOut('slow');
+    $('#dash-body').fadeIn('slow')
+    console.log('YES');
+  })
 
 $(function() {
   userLogin();
