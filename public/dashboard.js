@@ -26,10 +26,12 @@ function searchMedicationHandler() {
 
 function generateItemElement(item, itemIndex, template) {
   return `<li class="js-item-index-element" data-item-index="${item._id}">
-    <span class="medication-item js-medication-item">Name: ${item.name}</span>TEST<br>
-    <span class="medication-item js-medication-item">Generic: ${item.gname}</span><br>
-    <span class="medication-item js-medication-item">Route: ${item.route}</span><br>
-    <span class="medication-item js-medication-item">Active Ingredient: ${item.active}</span>
+    <span class="medication-item js-medication-item"><b>Name:</b> ${item.name}</span>
+    <span class="medication-item js-medication-item"><b>Generic:</b> ${item.gname}</span>
+    <span class="medication-item js-medication-item"><b>Route:</b> ${item.route}</span>
+    <span class="js-frequency">
+    <b>Frequency:</b> ${item.frequency}</span>
+    <span class="js-dosage"><b>Dosage:</b> ${item.dosage}</span>
     <div class="medication-item-controls">
     <button class="medication-item-delete js-item-delete">
     <span class="button-label">delete</span>
@@ -58,13 +60,14 @@ function generateSearchElement(item, itemIndex, template) {
     <span class="medication-item js-medication-item">Generic: ${item.openfda.generic_name}</span><br>
     <span class="medication-item js-medication-item">Route: ${item.openfda.route}</span><br>
     <span class="medication-item js-medication-item">Active Ingredient: ${item.openfda.substance_name}</span>
-    <div class="medication-item-controls">
-    <button class="button-label">Add to list</button><br>
-    </div>
-      <label for="frequency">Frequency</label>
-      <input type="text" id="user-frequency" class="user-entry"/><br>
-      <label for="dosage">Dosage</label>
-      <input type="text" id="user-dosage" class="user-entry"/><br>
+
+      <label for="frequency" id="frequency">Frequency</label>
+      <input type="text" placeholder="e.g., 3 times a day" id="user-frequency"/><br>
+      <label for="dosage" id="dosage">Dosage</label>
+      <input type="text" placeholder="e.g., 5mg" id="user-dosage"/><br>
+      <div class="medication-item-controls">
+      <button class="button-label">Add to list</button><br>
+      </div>
       <input type="hidden" id="route" value="${item.openfda.route}">
       <input type="hidden" id="brand-name" value="${item.openfda.brand_name}">
       <input type="hidden" id="generic-name" value="${item.openfda.generic_name}">
@@ -125,8 +128,11 @@ function addMedicationHandler() {
       gname: $(this).find('#generic-name').val(), //fix this//
       route: $(this).find('#route').val(),
       active: $(this).find('#substance-name').val(),
-      fdaid: ''
+      fdaid: '',
+      frequency: $(this).find('#user-frequency').val(),
+      dosage:$(this).find('#user-dosage').val()
     }
+    console.log(addMed)
     addNewMedication(addMed);
     $('#js-display').html('');
     renderMedicationList(newMedName);

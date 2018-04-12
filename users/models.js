@@ -68,6 +68,12 @@ const medSchema = mongoose.Schema({
   fdaid: {
     type: String,
     default: ''
+  },
+  frequency: {
+    type: String
+  },
+  dosage: {
+    type: String
   }
 });
 
