@@ -7,12 +7,13 @@
    font-family: myFirstFont;
 } */
 
-body {
+body, #dash-body {
   background: radial-gradient(#ffffcc 0%, #996600 100%);
   font-family: "Roboto", helvetica, sans-serif;
   padding: 60px 0 0;
   margin: 0;
   font-size: 18px;
+  height: 100vh;
 }
 
 header, .login-header {

@@ -7,7 +7,7 @@ function getDataFromApi(input, callback) {
     data: {
       // key: API_KEY,
       search: `openfda.brand_name:${input}`,
-      limit: 5
+      limit: 4
     },
   };
   $.getJSON(SEARCH_URL, query.data, searchMedications);
@@ -52,7 +52,7 @@ function searchMedications(data) {
 function generateSearchElement(item, itemIndex, template) {
   console.log(item);
   console.log(item.brand_name);
-  return `<form class="js-add-form">
+  return `<form class="js-add-form col-6">
   <li class="js-item-index-element" data-item-index=${itemIndex}">
     <span class="medication-item js-medication-item">Name: ${item.openfda.brand_name}</span><br>
     <span class="medication-item js-medication-item">Generic: ${item.openfda.generic_name}</span><br>
@@ -61,8 +61,10 @@ function generateSearchElement(item, itemIndex, template) {
     <div class="medication-item-controls">
     <button class="button-label">Add to list</button><br>
     </div>
-      <input type="text" id="user-frequency" class="user-entry"/>Frequency<br>
-      <input type="text" id="user-dosage" class="user-entry"/>Dosage<br>
+      <label for="frequency">Frequency</label>
+      <input type="text" id="user-frequency" class="user-entry"/><br>
+      <label for="dosage">Dosage</label>
+      <input type="text" id="user-dosage" class="user-entry"/><br>
       <input type="hidden" id="route" value="${item.openfda.route}">
       <input type="hidden" id="brand-name" value="${item.openfda.brand_name}">
       <input type="hidden" id="generic-name" value="${item.openfda.generic_name}">
