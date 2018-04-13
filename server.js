@@ -60,11 +60,13 @@ function runServer() {
   });
 }
 function closeServer() {
-  return mongoose.disconnect().then(() => {
-    return new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
+      mongoose.disconnect().then(() => {
       console.log('Closing server');
       server.close(err => {
+        console.log('close');
         if (err) {
+          console.log('again');
           return reject(err);
         }
         resolve();

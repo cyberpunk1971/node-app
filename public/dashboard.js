@@ -26,9 +26,9 @@ function searchMedicationHandler() {
 
 function generateItemElement(item, itemIndex, template) {
   return `<li class="js-item-index-element" data-item-index="${item._id}">
-    <span class="medication-item js-medication-item"><b>Name:</b> ${item.name}</span>
-    <span class="medication-item js-medication-item"><b>Generic:</b> ${item.gname}</span>
-    <span class="medication-item js-medication-item"><b>Route:</b> ${item.route}</span>
+    <span class="med-item js-medication-item"><b>Name:</b> ${item.name}</span>
+    <span class="med-item js-medication-item"><b>Generic:</b> ${item.gname}</span>
+    <span class="med-item js-medication-item"><b>Route:</b> ${item.route}</span>
     <span class="js-frequency">
     <b>Frequency:</b> ${item.frequency}</span>
     <span class="js-dosage"><b>Dosage:</b> ${item.dosage}</span>

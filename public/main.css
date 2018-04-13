@@ -8,7 +8,7 @@
 } */
 
 body, #dash-body {
-  background: radial-gradient(#ffffcc 0%, #996600 100%);
+  background: radial-gradient(#ffffff 0%, #003366 100%);
   font-family: "Roboto", helvetica, sans-serif;
   padding: 60px 0 0;
   margin: 0;
@@ -48,14 +48,14 @@ form legend {
   line-height: 40px;
   font-size: 35px;
   font-weight: 300;
-  color: #336600;
+  color: #000000;
   text-align: center;
   letter-spacing: 0;
   margin: 0 auto 45px;
 }
 
 label {
-  color: #336600;
+  color: #000000;
 }
 
 #search-label {
@@ -86,12 +86,12 @@ label {
 
 a:link {
     text-decoration: none;
-    color: #336600;
+    color: #000000;
     font-size: 1.4rem;
 }
 
 a:visited {
-  color: #336600;
+  color: #000000;
 }
 
 #js-submit {
@@ -99,7 +99,24 @@ a:visited {
 
 #js-login {
   margin-left: 0.8rem;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  vertical-align: middle;
+  padding: 20px;
 }
+
+#js-login:hover {
+  background-color: #ffffff;
+  color: white;
+  border-radius: 10%;
+}
+
+.med-item, .js-dosage, .js-frequency {
+  font-family: 'Gamja Flower', cursive;
+  font-size: 1.5em;
+}
+
+
 
 ul li span {
   display: block;
@@ -116,7 +133,7 @@ button[type="submit"] {
   padding: 15px;
   border: 2px solid #e7e7e7;
   border-radius: 3px;
-  background: #fcfcfc;
+  background: #ffffff;
   margin: 10px auto 20px;
   transition: opacity 0.4s;
 }
@@ -127,7 +144,7 @@ input[type="submit"] {
   font-weight: 500;
   text-align: center;
   color: white;
-  background: #336600;
+  background: #000000;
   border: 0;
   cursor: pointer;
   margin-bottom: 0;
