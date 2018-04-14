@@ -30,7 +30,7 @@ describe ('Users', function() {
       done();
     })
     .catch(function(err) {
-      console.log(err);
+
     });
   });
 

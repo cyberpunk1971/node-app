@@ -8,7 +8,6 @@ const mongoose = require('mongoose');
 
 
 router.post('/', (req, res) => {
-  console.log('hello2');
   const requiredFields = ['username', 'password'];
   const missingField = requiredFields.find(field => !(field in req.body));
 
@@ -107,7 +106,6 @@ router.post('/', (req, res) => {
 });
 
 router.get('/', (req, res) => {
-  console.log('hello3');
   return User.find()
     .then(users => res.json(users.map(user => user.serialize())))
     .catch(err => res.status(500).json({message: 'Internal Server Error'}));
@@ -138,7 +136,6 @@ router.get('/medication', jwtAuth, (req, res) => {
       res.json(user.medications)
     })
     .catch(err => res.status(500).json({message: 'Internal Server Error'}));
-  console.log('medstest');
 });
 
 router.delete('/medication/:id', jwtAuth, (req, res) => {
@@ -149,7 +146,6 @@ router.delete('/medication/:id', jwtAuth, (req, res) => {
   .then(user => res.json(user))
   .catch(err => {
     res.status(500).json({message: 'Internal Server Error'})
-    console.log(err);
   });
 });
 
