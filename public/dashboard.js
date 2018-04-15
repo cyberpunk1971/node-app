@@ -25,9 +25,8 @@ function searchMedicationHandler() {
 }
 
 function generateItemElement(item, itemIndex, template) {
-  return `<li class="js-item-index-element" data-item-index="${item._id}">
+  return `<li class="js-item-index-element user-med-item" data-item-index="${item._id}">
     <span class="med-item js-medication-item"><b>Name:</b> ${item.name}</span>
-    <span class="med-item js-medication-item"><b>Generic:</b> ${item.gname}</span>
     <span class="med-item js-medication-item"><b>Route:</b> ${item.route}</span>
     <span class="js-frequency">
     <b>Frequency:</b> ${item.frequency}</span>
@@ -52,18 +51,16 @@ function searchMedications(data) {
 }
 
 function generateSearchElement(item, itemIndex, template) {
-  console.log(item);
-  console.log(item.brand_name);
   return `<form class="js-add-form col-6">
-  <li class="js-item-index-element" data-item-index=${itemIndex}">
+  <li class="js-item-index-element">
     <span class="medication-item js-medication-item">Name: ${item.openfda.brand_name}</span><br>
     <span class="medication-item js-medication-item">Generic: ${item.openfda.generic_name}</span><br>
     <span class="medication-item js-medication-item">Route: ${item.openfda.route}</span><br>
-    <span class="medication-item js-medication-item">Active Ingredient: ${item.openfda.substance_name}</span>
+    <span class="medication-item js-medication-item">Active Ingredient: ${item.openfda.substance_name}</span><br>
 
-      <label for="frequency" id="frequency">Frequency</label>
+      <label for="frequency" id="frequency"><b>Frequency</b></label>
       <input type="text" placeholder="e.g., 3 times a day" id="user-frequency"/><br>
-      <label for="dosage" id="dosage">Dosage</label>
+      <label for="dosage" id="dosage"><b>Dosage</b></label>
       <input type="text" placeholder="e.g., 5mg" id="user-dosage"/><br>
       <div class="medication-item-controls">
       <button class="button-label">Add to list</button><br>
@@ -117,7 +114,6 @@ function addNewMedication(medName) {
 function addMedicationHandler() {
   $('body').on('submit', '.js-add-form', function(event) {
     event.preventDefault();
-
     const newMedName = $('.js-medication-list').val();
     $('.js-medication-list').val('');
     console.log('test');

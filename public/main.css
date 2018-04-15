@@ -15,8 +15,19 @@ body {
 header, .login-header {
   font-family: 'Amatic SC', cursive;
   text-align: center;
-
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#register-text {
+  font-size: 2em;
+}
+
 
 h1 {
   font-size: 6em;
@@ -103,7 +114,16 @@ a:visited {
   font-size: 2em;
 }
 
-#js-login {
+.js-item-index-element {
+  font-family: sans-serif;
+  border: 1px solid black;
+}
+
+#user-med-item {
+  border-style: : none !important;
+}
+
+#login-button {
   margin-left: 0.8rem;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
@@ -111,14 +131,15 @@ a:visited {
   padding: 20px;
 }
 
-#js-login:hover {
+#login-button:hover {
   background-color: #000000;
   color: white;
   border-radius: 10%;
 }
 
+
 .med-item, .js-dosage, .js-frequency {
-  font-family: 'Gamja Flower', cursive;
+  font-family: cursive;
   font-size: 1.5em;
 }
 
