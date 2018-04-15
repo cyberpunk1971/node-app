@@ -47,11 +47,11 @@ function userLogin() {
     });
   }
 
-  $('#js-login-button').click(function() {
-    $('#log-body').fadeOut('slow');
-    $('#dash-body').fadeIn('slow')
-    console.log('YES');
-  })
+  // $('#js-login-button').click(function() {
+  //   $('#log-body').fadeOut('slow');
+  //   $('#dash-body').fadeIn('slow')
+  //   console.log('YES');
+  // })
 
 $(function() {
   userLogin();

@@ -1,15 +1,11 @@
-/* @font-face {
-   font-family: myFirstFont;
-   src: url(sansation_light.woff);
+body {
+  font-family: 'Amatic SC', cursive;
 }
 
-* {
-   font-family: myFirstFont;
-} */
-
-body, #dash-body {
-  background: radial-gradient(#ffffff 0%, #003366 100%);
-  font-family: "Roboto", helvetica, sans-serif;
+.alt-body {
+  /* background: radial-gradient(#ffffff 0%, #003366 100%); */
+  /* font-family: 'Shadows Into Light', cursive; */
+  /* background-image: url(freestocks-org-126848-unsplash.jpg); */
   padding: 60px 0 0;
   margin: 0;
   font-size: 18px;
@@ -17,7 +13,15 @@ body, #dash-body {
 }
 
 header, .login-header {
+  font-family: 'Amatic SC', cursive;
   text-align: center;
+
+}
+
+h1 {
+  font-size: 6em;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 ul {
@@ -46,7 +50,7 @@ form {
 form legend {
   width: 100%;
   line-height: 40px;
-  font-size: 35px;
+  font-size: 3em;
   font-weight: 300;
   color: #000000;
   text-align: center;
@@ -56,10 +60,11 @@ form legend {
 
 label {
   color: #000000;
+  font-size: 1.5em;
 }
 
 #search-label {
-  font-size: 1.5em;
+  font-size: 1.75em;
 }
 
 #dosage, #frequency {
@@ -67,7 +72,7 @@ label {
 }
 
 .user-entry {
-  font-size: 0.5em;
+  font-size: 1.75em;
 }
 
 .button-label {
@@ -86,15 +91,16 @@ label {
 
 a:link {
     text-decoration: none;
-    color: #000000;
-    font-size: 1.4rem;
+    color: black;
+    font-size: 1rem;
 }
 
 a:visited {
   color: #000000;
 }
 
-#js-submit {
+#login-button {
+  font-size: 2em;
 }
 
 #js-login {
@@ -106,7 +112,7 @@ a:visited {
 }
 
 #js-login:hover {
-  background-color: #ffffff;
+  background-color: #000000;
   color: white;
   border-radius: 10%;
 }
