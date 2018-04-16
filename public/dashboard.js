@@ -13,12 +13,6 @@ function getDataFromApi(input, callback) {
   $.getJSON(SEARCH_URL, query.data, searchMedications);
 }
 
-
-  $('#js-dashboard-submit').click(function() {
-    $('#results').show();
-  });
-
-
 function searchMedicationHandler() {
   $('#js-dashboard-search-form').submit(function(event) {
     event.preventDefault();
@@ -26,11 +20,13 @@ function searchMedicationHandler() {
     getDataFromApi(searchMedName);
     event.target.reset();
     const medSearchList = searchMedications(searchMedName);
-
-    $('.js-search-list').append(medSearchList);
+    $('.js-search-list').prepend(medSearchList);
+    $('#results').html('Search Results:');
   });
+
 }
 
+// User medication list template //
 function generateItemElement(item, itemIndex, template) {
   return `<li class="col-6 js-item-index-element user-med-item" data-item-index="${item._id}">
     <span class="med-item js-medication-item"><b>Name:</b> ${item.name}</span>
@@ -53,17 +49,18 @@ function searchMedications(data) {
   for (let i = 0; i < searchMeds.length; i += 1) {
     searchResults += generateSearchElement(searchMeds[i], i);
   }
-  $('#js-display').append(searchResults);
+  $('#js-display').prepend(searchResults);
   return searchResults;
 }
 
+//Search results template//
 function generateSearchElement(item, itemIndex, template) {
-  return `<form class="js-add-form col-6">
+  return `<form class="js-add-form grid-item">
   <li class="js-item-index-element">
-    <span class="medication-item js-medication-item">Name: ${item.openfda.brand_name}</span><br>
-    <span class="medication-item js-medication-item">Generic: ${item.openfda.generic_name}</span><br>
-    <span class="medication-item js-medication-item">Route: ${item.openfda.route}</span><br>
-    <span class="medication-item js-medication-item">Active Ingredient: ${item.openfda.substance_name}</span><br>
+    <span class="medication-item js-medication-item"><b>Name:</b> ${item.openfda.brand_name}</span><br>
+    <span class="medication-item js-medication-item"><b>Generic:</b> ${item.openfda.generic_name}</span><br>
+    <span class="medication-item js-medication-item"><b>Route:</b> ${item.openfda.route}</span><br>
+    <span class="medication-item js-medication-item"><b>Active Ingredient:</b> ${item.openfda.substance_name}</span><br>
       <input type="text" placeholder="Add frequency here" id="user-frequency"/><br>
       <input type="text" placeholder="Add Dosage here" id="user-dosage"/><br>
       <div class="medication-item-controls">
@@ -154,7 +151,7 @@ function deleteMedication(itemIndex) {
 function deleteMedicationHandler() {
   $('.js-medication-list').on('click', '.js-item-delete', event => {
     if(confirm('Are you sure you want to delete this medication?')) {
-      const itemIndex =     getItemIndexFromElement(event.currentTarget);
+    const itemIndex =    getItemIndexFromElement(event.currentTarget);
     deleteMedication(itemIndex);
     renderMedicationList();
   }
