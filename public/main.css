@@ -4,6 +4,7 @@ body {
 }
 
 /* #dash-body {
+
   background-image: url(freestocks-org-126848-unsplash.jpg);
 } */
 
@@ -139,7 +140,7 @@ p, .js-search-list {
 }
 
 .js-add-form {
-  background: radial-gradient(#ffffff 0%, #fff7e6 100%);
+  background: radial-gradient(#ffffff 0%, #e6f0ff 100%);
   border: 1px solid #ffeecc;
 }
 
