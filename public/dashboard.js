@@ -25,7 +25,7 @@ function searchMedicationHandler() {
 }
 
 function generateItemElement(item, itemIndex, template) {
-  return `<li class="js-item-index-element user-med-item" data-item-index="${item._id}">
+  return `<li class="col-6 js-item-index-element user-med-item" data-item-index="${item._id}">
     <span class="med-item js-medication-item"><b>Name:</b> ${item.name}</span>
     <span class="med-item js-medication-item"><b>Route:</b> ${item.route}</span>
     <span class="js-frequency">
@@ -33,7 +33,7 @@ function generateItemElement(item, itemIndex, template) {
     <span class="js-dosage"><b>Dosage:</b> ${item.dosage}</span>
     <div class="medication-item-controls">
     <button class="medication-item-delete js-item-delete">
-    <span class="button-label">delete</span>
+    <span class="button-label">DELETE</span>
     </button>
     </div>
   </li>`;
@@ -57,11 +57,8 @@ function generateSearchElement(item, itemIndex, template) {
     <span class="medication-item js-medication-item">Generic: ${item.openfda.generic_name}</span><br>
     <span class="medication-item js-medication-item">Route: ${item.openfda.route}</span><br>
     <span class="medication-item js-medication-item">Active Ingredient: ${item.openfda.substance_name}</span><br>
-
-      <label for="frequency" id="frequency"><b>Frequency</b></label>
-      <input type="text" placeholder="e.g., 3 times a day" id="user-frequency"/><br>
-      <label for="dosage" id="dosage"><b>Dosage</b></label>
-      <input type="text" placeholder="e.g., 5mg" id="user-dosage"/><br>
+      <input type="text" placeholder="Frequency: 3 times a day" id="user-frequency"/><br>
+      <input type="text" placeholder="Dosage: 5mg" id="user-dosage"/><br>
       <div class="medication-item-controls">
       <button class="button-label">Add to list</button><br>
       </div>
@@ -89,8 +86,6 @@ function renderMedicationList() {
         Authorization: 'Bearer ' + localStorage.token
     }
   }).done(function(data, error) {
-    console.log(error);
-    console.log(data);
     const medicationString = generateMedicationString(data);
     $('.js-medication-list').html(medicationString);
   });
@@ -106,8 +101,6 @@ function addNewMedication(medName) {
       Authorization: 'Bearer ' + localStorage.token
     }
   }).done(function(data, error) {
-    console.log(error);
-    console.log(data);
   });
 }
 
@@ -116,8 +109,6 @@ function addMedicationHandler() {
     event.preventDefault();
     const newMedName = $('.js-medication-list').val();
     $('.js-medication-list').val('');
-    console.log('test');
-    console.log();
     const addMed = {
       name: $(this).find('#brand-name').val(),
       form: $(this).find('#dosage-form').val(),
@@ -128,7 +119,6 @@ function addMedicationHandler() {
       frequency: $(this).find('#user-frequency').val(),
       dosage:$(this).find('#user-dosage').val()
     }
-    console.log(addMed)
     addNewMedication(addMed);
     $('#js-display').html('');
     renderMedicationList(newMedName);
@@ -139,7 +129,7 @@ function getItemIndexFromElement(item) {
   const itemIndexString = $(item)
     .closest('.js-item-index-element')
     .attr('data-item-index');
-  return itemIndexString //what is this?//
+  return itemIndexString
 }
 
 function deleteMedication(itemIndex) {
@@ -151,16 +141,17 @@ function deleteMedication(itemIndex) {
       Authorization: 'Bearer ' + localStorage.token
     }
   }).done(function(data, error) {
-    console.log(error);
-    console.log(data);
   });
 }
 
 function deleteMedicationHandler() {
   $('.js-medication-list').on('click', '.js-item-delete', event => {
-    const itemIndex = getItemIndexFromElement(event.currentTarget);
+    if(confirm('Are you sure you want to delete this medication?')) {
+      const itemIndex =     getItemIndexFromElement(event.currentTarget);
     deleteMedication(itemIndex);
     renderMedicationList();
+  }
+
   });
 }
 
