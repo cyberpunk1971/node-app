@@ -3,6 +3,10 @@ body {
   height: 100vh;
 }
 
+/* #dash-body {
+  background-image: url(freestocks-org-126848-unsplash.jpg);
+} */
+
 .alt-body {
   padding: 60px 0 0;
   margin: 0;
@@ -15,17 +19,9 @@ header, .login-header {
   text-align: center;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 #register-text {
   font-size: 2em;
 }
-
 
 h1 {
   font-size: 6em;
@@ -53,7 +49,7 @@ form {
 }
 
 li {
-  overflow: auto;
+
   list-style: none;
 }
 
@@ -107,7 +103,6 @@ a:visited {
   border-style: : none !important;
   font-family: 'Amatic SC', cursive;
   overflow: auto;
-
 }
 
 #login-button {
@@ -144,24 +139,22 @@ p, .js-search-list {
 }
 
 .js-add-form {
-  background-color: cadetblue;
+  background: radial-gradient(#ffffff 0%, #fff7e6 100%);
+  border: 1px solid #ffeecc;
 }
 
 #results {
-  font-size: 5em;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  font-size: 6em;
+  text-align: center;
 }
 
 .container {
   display: grid;
   grid-template-columns: auto auto;
-  grid-template-rows: auto auto;
-  grid-gap: 1px;
-  justify-content: space-evenly;
+  grid-gap: 5px;
 }
-/* #js-display {
-  display: grid;
-
-} */
 
 .medication-item-delete {
   display: block;
@@ -249,5 +242,12 @@ footer {
     color: white;
     background: black;
     margin: 10px auto;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .container {
+    display: grid;
+    grid-template-columns: auto;
   }
 }

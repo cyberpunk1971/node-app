@@ -55,12 +55,12 @@ function searchMedications(data) {
 
 //Search results template//
 function generateSearchElement(item, itemIndex, template) {
-  return `<form class="js-add-form grid-item">
-  <li class="js-item-index-element">
-    <span class="medication-item js-medication-item"><b>Name:</b> ${item.openfda.brand_name}</span><br>
-    <span class="medication-item js-medication-item"><b>Generic:</b> ${item.openfda.generic_name}</span><br>
-    <span class="medication-item js-medication-item"><b>Route:</b> ${item.openfda.route}</span><br>
-    <span class="medication-item js-medication-item"><b>Active Ingredient:</b> ${item.openfda.substance_name}</span><br>
+  return `<form class="js-add-form container">
+  <li class="js-item-index-element grid-item">
+    <span class="medication-item js-medication-item grid-item"><b>Name:</b> ${item.openfda.brand_name}</span><br>
+    <span class="medication-item js-medication-item grid-item"><b>Generic:</b> ${item.openfda.generic_name}</span><br>
+    <span class="medication-item js-medication-item grid-item"><b>Route:</b> ${item.openfda.route}</span><br>
+    <span class="medication-item js-medication-item grid-item"><b>Active Ingredient:</b> ${item.openfda.substance_name}</span><br>
       <input type="text" placeholder="Add frequency here" id="user-frequency"/><br>
       <input type="text" placeholder="Add Dosage here" id="user-dosage"/><br>
       <div class="medication-item-controls">
