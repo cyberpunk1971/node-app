@@ -13,6 +13,12 @@ function getDataFromApi(input, callback) {
   $.getJSON(SEARCH_URL, query.data, searchMedications);
 }
 
+
+  $('#js-dashboard-submit').click(function() {
+    $('#results').show();
+  });
+
+
 function searchMedicationHandler() {
   $('#js-dashboard-search-form').submit(function(event) {
     event.preventDefault();
@@ -20,6 +26,7 @@ function searchMedicationHandler() {
     getDataFromApi(searchMedName);
     event.target.reset();
     const medSearchList = searchMedications(searchMedName);
+
     $('.js-search-list').append(medSearchList);
   });
 }
@@ -57,8 +64,8 @@ function generateSearchElement(item, itemIndex, template) {
     <span class="medication-item js-medication-item">Generic: ${item.openfda.generic_name}</span><br>
     <span class="medication-item js-medication-item">Route: ${item.openfda.route}</span><br>
     <span class="medication-item js-medication-item">Active Ingredient: ${item.openfda.substance_name}</span><br>
-      <input type="text" placeholder="Frequency: 3 times a day" id="user-frequency"/><br>
-      <input type="text" placeholder="Dosage: 5mg" id="user-dosage"/><br>
+      <input type="text" placeholder="Add frequency here" id="user-frequency"/><br>
+      <input type="text" placeholder="Add Dosage here" id="user-dosage"/><br>
       <div class="medication-item-controls">
       <button class="button-label">Add to list</button><br>
       </div>
@@ -151,8 +158,7 @@ function deleteMedicationHandler() {
     deleteMedication(itemIndex);
     renderMedicationList();
   }
-
-  });
+});
 }
 
 function handleMedicationList() {
@@ -161,5 +167,6 @@ function handleMedicationList() {
   deleteMedicationHandler();
   searchMedicationHandler();
 }
+
 
 $(handleMedicationList);
