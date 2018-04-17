@@ -151,6 +151,9 @@ p, .js-search-list {
   text-align: center;
 }
 
+.row {
+  text-align: center;
+}
 .container {
   display: grid;
   grid-template-columns: auto auto;
