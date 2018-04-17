@@ -25,10 +25,6 @@ function searchMedicationHandler() {
   });
 }
 
-// $('.button-label').on('click', function() {
-//   $('#results').hide();
-// });
-
 // User medication list template //
 function generateItemElement(item, itemIndex, template) {
   return `<li class="col-6 js-item-index-element   user-med-item" data-item-index="${item._id}">
@@ -128,6 +124,7 @@ function addMedicationHandler() {
     }
     addNewMedication(addMed);
     $('#js-display').html('');
+    $('#results').html('');
     renderMedicationList(newMedName);
   });
 }
