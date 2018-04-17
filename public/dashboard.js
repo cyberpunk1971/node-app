@@ -28,7 +28,7 @@ function searchMedicationHandler() {
 
 // User medication list template //
 function generateItemElement(item, itemIndex, template) {
-  return `<li class="col-6 js-item-index-element user-med-item" data-item-index="${item._id}">
+  return `<li class="grid-item js-item-index-element   user-med-item" data-item-index="${item._id}">
     <span class="med-item js-medication-item"><b>Name:</b> ${item.name}</span>
     <span class="med-item js-medication-item"><b>Route:</b> ${item.route}</span>
     <span class="js-frequency">
@@ -39,7 +39,7 @@ function generateItemElement(item, itemIndex, template) {
     <span class="button-label">DELETE</span>
     </button>
     </div>
-  </li>`;
+    </li>`;
 }
 
 function searchMedications(data) {
@@ -55,7 +55,7 @@ function searchMedications(data) {
 
 //Search results template//
 function generateSearchElement(item, itemIndex, template) {
-  return `<form class="js-add-form container">
+  return `<form class="js-add-form">
   <li class="js-item-index-element grid-item">
     <span class="medication-item js-medication-item grid-item"><b>Name:</b> ${item.openfda.brand_name}</span><br>
     <span class="medication-item js-medication-item grid-item"><b>Generic:</b> ${item.openfda.generic_name}</span><br>
