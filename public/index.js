@@ -1,5 +1,3 @@
-
-
 function userRegistration() {
   $('body').on('submit', '#js-form', function(event) {
     event.preventDefault();
@@ -8,18 +6,15 @@ function userRegistration() {
       lastname: $('#js-lname').val(),
       username: $('#js-uname').val(),
       password: $('#js-password').val()
-      // email: $('#js-email').val();
     };
 
     $.ajax({
-      url: 'http://localhost:8081/api/users',
+      url: '/api/users',
       data: JSON.stringify(registerValues),
       type: 'POST',
       contentType: 'application/json'
     }).done(function(error, data) {
       window.location = '/dashboard.html'
-      console.log(error);
-      console.log(data);
     });
   });
 }
@@ -31,9 +26,8 @@ function userLogin() {
       username: $('#js-auth-username').val(),
       password: $('#js-auth-password').val()
       }
-      console.log(userValue);
       $.ajax({
-        url: 'http://localhost:8081/api/auth/login',
+        url: '/api/auth/login',
         headers: { 'Authorization': 'Basic ' +  btoa(`${userValue.username}:${userValue.password}`)},
         type: 'POST',
         data: JSON.stringify(userValue),
@@ -41,8 +35,6 @@ function userLogin() {
       }).done(function(data, error) {
         window.location = '/dashboard.html'
         localStorage.token = data.authToken
-        console.log(error);
-        console.log(data);
       });
     });
   }
