@@ -126,7 +126,7 @@ p, .js-search-list {
 
 .js-add-form {
   background: radial-gradient(#ffffff 0%, #e6f0ff 100%);
-  border: 1px solid #ffeecc;
+  border: 5px solid white;
 }
 
 #results {
@@ -138,13 +138,6 @@ p, .js-search-list {
 
 .row {
   text-align: center;
-}
-
-.container {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-gap: 5em;
-  max-width: 50%;
 }
 
 .medication-item-delete {
@@ -233,6 +226,20 @@ footer {
     color: white;
     background: black;
     margin: 10px auto;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .user-med-item {
+    min-width: 100%;
+    text-align: center;
+  }
+}
+
+@media only screen and (min-width: 750px) {
+  #results {
+    margin-top: 400px;
+    color: red;
   }
 }
 
