@@ -9,7 +9,7 @@ const jsonParser = bodyParser.json();
 const { router: usersRouter } = require('./users');
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 mongoose.Promise = global.Promise;
-const {DATABASE_URL} = require('./config');
+const {PORT, DATABASE_URL} = require('./config');
 const app = express();
 
 app.use(express.static('public'));
