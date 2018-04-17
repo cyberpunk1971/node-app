@@ -83,7 +83,7 @@ function generateMedicationString(medications) {
 
 function renderMedicationList() {
   $.ajax({
-    url: 'http://localhost:8081/api/users/medication',
+    url: '/api/users/medication',
     type: 'GET',
     contentType: 'application/json',
     headers: {
@@ -97,7 +97,7 @@ function renderMedicationList() {
 
 function addNewMedication(medName) {
   $.ajax({
-    url: 'http://localhost:8081/api/users/medication',
+    url: '/api/users/medication',
     data: JSON.stringify(medName),
     type: 'POST',
     contentType: 'application/json',
@@ -138,7 +138,7 @@ function getItemIndexFromElement(item) {
 
 function deleteMedication(itemIndex) {
   $.ajax({
-    url: 'http://localhost:8081/api/users/medication/' + itemIndex,
+    url: '/api/users/medication/' + itemIndex,
     type: 'DELETE',
     contentType: 'application/json',
     headers: {

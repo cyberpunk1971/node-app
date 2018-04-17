@@ -112,7 +112,6 @@ router.get('/', (req, res) => {
 });
 
 router.post('/medication', jwtAuth, (req, res) => {
-  console.log('hellomeds', req.body);
   return Medication.create(req.body)
     .then(medication => {
       return User.findOneAndUpdate({username:req.user.username}, {
@@ -124,7 +123,6 @@ router.post('/medication', jwtAuth, (req, res) => {
     })
     .catch(err => {
       res.status(500).json({message: 'Internal Server Error'})
-      console.log(err);
     });
 });
 

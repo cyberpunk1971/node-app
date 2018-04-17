@@ -9,7 +9,7 @@ const jsonParser = bodyParser.json();
 const { router: usersRouter } = require('./users');
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 mongoose.Promise = global.Promise;
-const {PORT, DATABASE_URL} = require('./config');
+const {DATABASE_URL} = require('./config');
 const app = express();
 
 app.use(express.static('public'));
@@ -64,9 +64,7 @@ function closeServer() {
       mongoose.disconnect().then(() => {
       console.log('Closing server');
       server.close(err => {
-        console.log('close');
         if (err) {
-          console.log('again');
           return reject(err);
         }
         resolve();
