@@ -101,16 +101,20 @@ function addNewMedication(medName) {
     type: 'POST',
     contentType: 'application/json',
     headers: {
-      Authorization: 'Bearer ' + localStorage.token
+    Authorization: 'Bearer ' + localStorage.token
     }
   }).done(function(data, error) {
+    const newMedName = $('.js-medication-list').val();
+    $('#js-display').html('');
+    $('#results').html('');
+    renderMedicationList(newMedName);
   });
 }
 
 function addMedicationHandler() {
   $('body').on('submit', '.js-add-form', function(event) {
     event.preventDefault();
-    const newMedName = $('.js-medication-list').val();
+
     $('.js-medication-list').val('');
     const addMed = {
       name: $(this).find('#brand-name').val(),
@@ -123,9 +127,7 @@ function addMedicationHandler() {
       dosage:$(this).find('#user-dosage').val()
     }
     addNewMedication(addMed);
-    $('#js-display').html('');
-    $('#results').html('');
-    renderMedicationList(newMedName);
+
   });
 }
 
