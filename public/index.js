@@ -14,8 +14,9 @@ function userRegistration() {
       type: 'POST',
       contentType: 'application/json'
     }).done(function(error, data) {
-      window.location = '/dashboard.html'
+       userLoginAjaxCall(registerValues);
     });
+
   });
 }
 
@@ -25,25 +26,31 @@ function userLogin() {
     const userValue = {
       username: $('#js-auth-username').val(),
       password: $('#js-auth-password').val()
-      }
-      $.ajax({
-        url: '/api/auth/login',
-        headers: { 'Authorization': 'Basic ' +  btoa(`${userValue.username}:${userValue.password}`)},
-        type: 'POST',
-        data: JSON.stringify(userValue),
-        contentType: 'application/json'
-      }).done(function(data, error) {
-        window.location = '/dashboard.html'
-        localStorage.token = data.authToken
-      });
-    });
-  }
+    }
+    userLoginAjaxCall(userValue);
+  });
+}
 
-  // $('#js-login-button').click(function() {
-  //   $('#log-body').fadeOut('slow');
-  //   $('#dash-body').fadeIn('slow')
-  //   console.log('YES');
-  // })
+function userLoginAjaxCall(userValue) {
+  $.ajax({
+    url: '/api/auth/login',
+    headers: {
+      'Authorization': 'Basic ' + btoa(`${userValue.username}:${userValue.password}`)
+    },
+    type: 'POST',
+    data: JSON.stringify(userValue),
+    contentType: 'application/json'
+  }).done(function(data, error) {
+    window.location = '/dashboard.html'
+    localStorage.token = data.authToken
+  });
+}
+
+// $('#js-login-button').click(function() {
+//   $('#log-body').fadeOut('slow');
+//   $('#dash-body').fadeIn('slow')
+//   console.log('YES');
+// })
 
 $(function() {
   userLogin();

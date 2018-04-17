@@ -158,11 +158,19 @@ function deleteMedicationHandler() {
 });
 }
 
+function logOut() {
+  $('#logout-btn').on('click', function() {
+    localStorage.clear();
+    window.location = '/index.html'
+  });
+}
+
 function handleMedicationList() {
   renderMedicationList();
   addMedicationHandler();
   deleteMedicationHandler();
   searchMedicationHandler();
+  logOut();
 }
 
 
