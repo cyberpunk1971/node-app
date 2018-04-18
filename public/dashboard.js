@@ -59,7 +59,7 @@ function generateSearchElement(item, itemIndex, template) {
     <span class="medication-item js-medication-item grid-item"><b>Name:</b> ${item.openfda.brand_name}</span><br>
     <span class="medication-item js-medication-item grid-item"><b>Generic:</b> ${item.openfda.generic_name}</span><br>
     <span class="medication-item js-medication-item grid-item"><b>Route:</b> ${item.openfda.route}</span><br>
-    <span class="medication-item js-medication-item grid-item"><b>Active Ingredient:</b> ${item.openfda.substance_name}</span><br>
+    
       <input type="text" placeholder="Add frequency here" id="user-frequency"/><br>
       <input type="text" placeholder="Add Dosage here" id="user-dosage"/><br>
       <div class="medication-item-controls">

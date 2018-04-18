@@ -127,6 +127,7 @@ p, .js-search-list {
 .js-add-form {
   background: rgba(200, 201, 201, 0.3);
   border: 5px solid white;
+  height: 400px;
 
 }
 
