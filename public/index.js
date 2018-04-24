@@ -46,6 +46,16 @@ function userLoginAjaxCall(userValue) {
   });
 }
 
+function tryIt() {
+  $('#try-btn').on('click', function() {
+    const demoValues = {
+      username: 'demo',
+      password: 'demo'
+    }
+    userLoginAjaxCall(demoValues);
+  });
+};
+
 // $('#js-login-button').click(function() {
 //   $('#log-body').fadeOut('slow');
 //   $('#dash-body').fadeIn('slow')
@@ -55,4 +65,5 @@ function userLoginAjaxCall(userValue) {
 $(function() {
   userLogin();
   userRegistration();
+  tryIt();
 });

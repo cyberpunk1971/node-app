@@ -5,12 +5,14 @@ function getDataFromApi(input, callback) {
   const query = {
     url: SEARCH_URL,
     data: {
-      // key: API_KEY,
       search: `openfda.brand_name:${input}`,
       limit: 4
     },
   };
-  $.getJSON(SEARCH_URL, query.data, searchMedications);
+  $.getJSON(SEARCH_URL, query.data, searchMedications)
+  .fail(function() {
+   alert('item not found');
+  })
 }
 
 function searchMedicationHandler() {
@@ -19,8 +21,8 @@ function searchMedicationHandler() {
     const searchMedName = $('#js-dashboard-search').val();
     getDataFromApi(searchMedName);
     event.target.reset();
-    const medSearchList = searchMedications(searchMedName);
-    $('.js-search-list').prepend(medSearchList);
+    // const medSearchList = searchMedications(searchMedName);
+    // $('.js-search-list').prepend(medSearchList);
     $('#results').html('Search Results:');
   });
 }
@@ -42,6 +44,7 @@ function generateItemElement(item, itemIndex, template) {
 }
 
 function searchMedications(data) {
+  console.log(data);
   let searchResults = ''
   let searchMeds = data.results
   if (!searchMeds) return
@@ -59,7 +62,7 @@ function generateSearchElement(item, itemIndex, template) {
     <span class="medication-item js-medication-item grid-item"><b>Name:</b> ${item.openfda.brand_name}</span><br>
     <span class="medication-item js-medication-item grid-item"><b>Generic:</b> ${item.openfda.generic_name}</span><br>
     <span class="medication-item js-medication-item grid-item"><b>Route:</b> ${item.openfda.route}</span><br>
-    
+
       <input type="text" placeholder="Add frequency here" id="user-frequency"/><br>
       <input type="text" placeholder="Add Dosage here" id="user-dosage"/><br>
       <div class="medication-item-controls">
