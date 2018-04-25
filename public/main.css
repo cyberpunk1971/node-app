@@ -30,13 +30,15 @@ header, .login-header {
   font-size: 1em;
 }
 
-h1, #title-btn {
+h1 {
   font-size: 8em;
   margin-top: 0;
   margin-bottom: 0;
 }
 
-
+#title-btn {
+  font-size: 3em;
+}
 
 h3 {
   font-size: 2rem;
