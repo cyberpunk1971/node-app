@@ -26,7 +26,7 @@ header, .login-header {
   background: black;
   border: none;
   color: white;
-  padding: 5px;
+  padding: 10px;
   font-size: 1em;
 }
 
@@ -62,6 +62,10 @@ form {
   padding: 40px;
   border-radius: 3px;
   margin: 0 auto;
+}
+
+#form-section {
+  text-align: center;
 }
 
 li {
@@ -125,6 +129,11 @@ a:visited {
   border-radius: 10%;
 }
 
+#js-fname, #js-lname, #js-uname, #js-password {
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
 .med-item, .js-dosage, .js-frequency {
   font-family: 'Amatic SC', cursive;
   font-size: 2.5rem;
@@ -135,6 +144,10 @@ a:visited {
 p, .js-search-list {
   font-size: 3.5em;
   font-family: 'Amatic SC', cursive;
+}
+
+p {
+  margin-top: 0px;
 }
 
 .js-add-form {
@@ -153,9 +166,20 @@ p, .js-search-list {
 }
 
 #logout-btn {
-  float: right;
+  float: left;
   background: black;
   color: white;
+  cursor: pointer;
+  padding: 7px;
+  border: none;
+}
+
+#try-btn {
+  border: none;
+  background-color: red;
+  padding: 7px;
+  font-size: 2em;
+  margin-bottom: 100px;
   cursor: pointer;
 }
 
@@ -187,6 +211,10 @@ ul li span {
   text-align: left;
 }
 
+input[type="button"]:hover,
+input[type="submit"]:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
 
 input[type="text"],
 input[type="password"],
@@ -195,7 +223,7 @@ button[type="submit"] {
   width: 100%;
   height: auto;
   text-align: left;
-  padding: 15px;
+  padding: 20px;
   border: 2px solid #e7e7e7;
   border-radius: 3px;
   background: #ffffff;
@@ -210,6 +238,7 @@ input[type="submit"], .button-label, .js-item-delete {
   text-align: center;
   color: white;
   background: #000000;
+  padding: 6px;
   border: 0;
   cursor: pointer;
   margin-bottom: 0;
