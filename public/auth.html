@@ -12,7 +12,7 @@
 
 <body id="log-body" class="alt-body">
   <header role="banner" class="row login-header">
-    <nav>
+    <nav role="navigation">
       <input type="button" value="Home" id="home-btn" onClick="window.location = 'index.html'">
     </nav>
     <h1>CandyMan</h1>
@@ -21,11 +21,11 @@
   </header>
     <form id="js-login-form" action="#" method="post">
       <fieldset>
-        <section>
+        <section role="region">
           <label for="username">Username</label>
         <input type="text" id="js-auth-username" required>
       </section>
-      <section>
+      <section role="region">
         <label for="password">Password</label>
         <input type="password" id="js-auth-password" required>
         <input type="submit" id="js-login-button" name="button" value="Login"></button>

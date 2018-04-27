@@ -12,16 +12,16 @@
 
 
 <body id="dash-body">
-  <header>
+  <header role="banner">
     <h1>
       <a href="index.html" id="title-btn">CandyMan</a>
     </h1>
 
-    <nav>
+    <nav role="navigation">
       <input type="button" value="Logout" id="logout-btn">
     </nav>
   </header>
-  <section id="js-dashboard">
+  <section role="region" id="js-dashboard">
     <form action="#" method="post" id="js-dashboard-search-form">
       <label for="search" id="search-label">Search for a medication</label>
       <input type="text" name="search" id="js-dashboard-search">
@@ -31,10 +31,10 @@
 
     <ul class="medication-list js-medication-list container row"></ul>
     </section>
-    <section id="results">
+    <section role="region" id="results">
 
     </section>
-    <section  id="js-display" class="row">
+    <section role="region" id="js-display" class="row">
 
     </section>
   <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
