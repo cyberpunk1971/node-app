@@ -16,13 +16,17 @@ header, .login-header {
   text-align: center;
 }
 
+nav {
+  text-align: center;
+}
+
 #register-text {
   font-size: 2em;
   margin-bottom: 0px;
 }
 
 #home-btn {
-  float: right;
+
   background: black;
   border: none;
   color: white;
@@ -148,6 +152,7 @@ p, .js-search-list {
 
 p {
   margin-top: 0px;
+  margin-bottom: 5px;
 }
 
 .js-add-form {
@@ -262,11 +267,7 @@ footer {
 
 @media only screen and (max-width: 320px) {
   h3, footer{
-    display: none;
-  }
-
-  h1 {
-    font-size: 40px;
+    font-size: 1em;
   }
 
   .medication-item-delete {
@@ -279,6 +280,31 @@ footer {
     background: black;
     margin: 10px auto;
   }
+
+  #title {
+    font-size: 5rem;
+  }
+
+  #js-form {
+    padding-right: 100px;
+  }
+
+  .alt-body {
+    padding-top: 0px;
+  }
+
+  .login-div {
+    text-align: center;
+  }
+
+ #login-button {
+    font-size: 1em;
+  }
+
+  #or {
+    font-size: 1.8rem;
+  }
+
 }
 
 @media only screen and (max-width: 750px) {
@@ -286,6 +312,21 @@ footer {
     min-width: 100%;
     text-align: center;
   }
+  h1 {
+    font-size: 6.5rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  body {
+    padding-top: 0;
+    text-align: center;
+  }
+
+
+
 }
 
 /* @media only screen and (min-width: 750px) {
