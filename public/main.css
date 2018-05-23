@@ -281,7 +281,7 @@ footer {
     margin: 10px auto;
   }
 
-  #title {
+  .title {
     font-size: 5rem;
   }
 
@@ -301,7 +301,7 @@ footer {
     font-size: 1em;
   }
 
-  #or {
+  .p {
     font-size: 1.8rem;
   }
 
