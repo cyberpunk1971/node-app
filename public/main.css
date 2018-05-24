@@ -163,7 +163,7 @@ p {
 }
 
 #results {
-  margin-top: 100px;
+  margin-top: 0px;
   margin-bottom: 50px;
   font-size: 6em;
   text-align: center;
@@ -270,6 +270,10 @@ footer {
     font-size: 1em;
   }
 
+  nav {
+    margin-left: 80px;
+  }
+
   .medication-item-delete {
     display: inline;
     width: 50%;
@@ -281,8 +285,22 @@ footer {
     margin: 10px auto;
   }
 
-  .title {
-    font-size: 5rem;
+ #title {
+    font-size: 5em;
+  }
+
+ .title {
+    font-size: 5em;
+    text-align: center;
+    margin-left: 50px;
+  }
+
+  form {
+    padding-right: 125px;
+  }
+
+  #title-btn {
+    font-size: 4rem;
   }
 
   #js-form {
@@ -303,6 +321,8 @@ footer {
 
   .p {
     font-size: 1.8rem;
+    margin-left: 60px;
+    padding-left: 20px;
   }
 
 }
